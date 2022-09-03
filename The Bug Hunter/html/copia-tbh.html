@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="UTF-8">
+		<title>The Bug Hunter &#8211; Aprenda Bug Bounty</title>
+<meta name='robots' content='max-image-preview:large' />
+
+<!-- Social Warfare v4.3.0 https://warfareplugins.com - BEGINNING OF OUTPUT -->
+<style>
+	@font-face {
+		font-family: "sw-icon-font";
+		src:url("https://thebughunter.io/wp-content/plugins/social-warfare/assets/fonts/sw-icon-font.eot?ver=4.3.0");
+		src:url("https://thebughunter.io/wp-content/plugins/social-warfare/assets/fonts/sw-icon-font.eot?ver=4.3.0#iefix") format("embedded-opentype"),
+		url("https://thebughunter.io/wp-content/plugins/social-warfare/assets/fonts/sw-icon-font.woff?ver=4.3.0") format("woff"),
+		url("https://thebughunter.io/wp-content/plugins/social-warfare/assets/fonts/sw-icon-font.ttf?ver=4.3.0") format("truetype"),
+		url("https://thebughunter.io/wp-content/plugins/social-warfare/assets/fonts/sw-icon-font.svg?ver=4.3.0#1445203416") format("svg");
+		font-weight: normal;
+		font-style: normal;
+		font-display:block;
+	}
+</style>
+<!-- Social Warfare v4.3.0 https://warfareplugins.com - END OF OUTPUT -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Feed para The Bug Hunter &raquo;" href="https://thebughunter.io/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para The Bug Hunter &raquo;" href="https://thebughunter.io/comments/feed/" />
+<style>
+    img.wp-smiley,
+    img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 .07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+    }
+</style>
+<link rel='stylesheet' id='social-warfare-block-css-css'  href='https://thebughunter.io/wp-content/plugins/social-warfare/assets/js/post-editor/dist/blocks.style.build.css' media='all' />
+<link rel='stylesheet' id='generate-fonts-css'  href='//fonts.googleapis.com/css?family=Droid+Serif:regular,italic,700,700italic|Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic|Heebo:300,regular,500,700' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://thebughunter.io/wp-includes/css/dist/block-library/style.min.css' media='all' />
+<link rel='stylesheet' id='activecampaign-form-block-css'  href='https://thebughunter.io/wp-content/plugins/activecampaign-subscription-forms/activecampaign-form-block/build/style-index.css' media='all' />
+<link rel='stylesheet' id='ihs_geo_styles-css'  href='https://thebughunter.io/wp-content/plugins/ihs-geo-location/style.css' media='all' />
+<link rel='stylesheet' id='url-shortify-css'  href='https://thebughunter.io/wp-content/plugins/url-shortify/lite/dist/styles/url-shortify.css' media='all' />
+<link rel='stylesheet' id='social_warfare-css'  href='https://thebughunter.io/wp-content/plugins/social-warfare/assets/css/style.min.css' media='all' />
+<link rel='stylesheet' id='generate-style-css'  href='https://thebughunter.io/wp-content/themes/generatepress/assets/css/main.min.css' media='all' />
+<style id='generate-style-inline-css'>
+.no-featured-image-padding .featured-image {margin-left:-60px;margin-right:-60px;}.post-image-above-header .no-featured-image-padding .inside-article .featured-image {margin-top:-60px;}@media (max-width:768px){.no-featured-image-padding .featured-image {margin-left:-30px;margin-right:-30px;}.post-image-above-header .no-featured-image-padding .inside-article .featured-image {margin-top:-30px;}}
+body{background-color:#1f1d2b;color:#ffffff;}a{color:#ef1a67;}a:hover, a:focus, a:active{color:#ef4382;}.grid-container{max-width:800px;}.wp-block-group__inner-container{max-width:800px;margin-left:auto;margin-right:auto;}.site-header .header-image{width:120px;}body, button, input, select, textarea{font-family:"Droid Serif", serif;font-size:18px;}body{line-height:1.8;}.entry-content > [class*="wp-block-"]:not(:last-child){margin-bottom:1.5em;}.main-title{font-family:"Roboto", sans-serif;}.main-navigation a, .menu-toggle{font-family:"Heebo", sans-serif;font-size:17px;}.main-navigation .menu-bar-items{font-size:17px;}.main-navigation .main-nav ul ul li a{font-size:14px;}.widget-title{font-weight:bold;font-size:25px;}.sidebar .widget, .footer-widgets .widget{font-size:17px;}button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.wp-block-button .wp-block-button__link{font-family:"Roboto", sans-serif;font-weight:bold;}h1{font-family:"Roboto", sans-serif;font-weight:bold;font-size:55px;}h2{font-family:"Heebo", sans-serif;font-weight:bold;font-size:45px;}h3{font-family:"Heebo", sans-serif;font-size:20px;}h4{font-size:inherit;}h5{font-size:inherit;}@media (max-width:768px){.main-title{font-size:20px;}h1{font-size:30px;}h2{font-size:25px;}}.top-bar{background-color:#636363;color:#ffffff;}.top-bar a{color:#ffffff;}.top-bar a:hover{color:#303030;}.site-header{background-color:#ffffff;color:#3a3a3a;}.site-header a{color:#3a3a3a;}.main-title a,.main-title a:hover{color:#ffffff;}.site-description{color:#757575;}.main-navigation,.main-navigation ul ul{background-color:#1f1d2b;}.main-navigation .main-nav ul li a,.menu-toggle, .main-navigation .menu-bar-items{color:#ffffff;}.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{color:#8f919e;background-color:#ffffff;}button.menu-toggle:hover,button.menu-toggle:focus{color:#ffffff;}.main-navigation .main-nav ul li[class*="current-menu-"] > a{color:#8f919e;background-color:#ffffff;}.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a{color:#8f919e;background-color:#ffffff;}.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a, .main-navigation .menu-bar-items .search-item.active > a{color:#8f919e;background-color:#ffffff;}.main-navigation ul ul{background-color:#ffffff;}.main-navigation .main-nav ul ul li a{color:#000000;}.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a{color:#8f919e;background-color:#fafafa;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a{color:#8f919e;background-color:#fafafa;}.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a{color:#8f919e;background-color:#fafafa;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header{color:#e8e8e8;background-color:#1f1d2b;}.inside-article a,.paging-navigation a,.comments-area a,.page-header a{color:#ef1a67;}.inside-article a:hover,.paging-navigation a:hover,.comments-area a:hover,.page-header a:hover{color:#ef2f76;}.entry-title a{color:#ffffff;}.entry-title a:hover{color:#ef1a67;}.entry-meta{color:#dbdbdb;}.entry-meta a{color:#dbdbdb;}.entry-meta a:hover{color:#1e73be;}h1{color:#ffffff;}h2{color:#ffffff;}.sidebar .widget{background-color:rgba(0,0,0,0.04);}.sidebar .widget .widget-title{color:#ffffff;}.footer-widgets{background-color:rgba(0,0,0,0.04);}.footer-widgets .widget-title{color:#000000;}.site-info{color:#9e9e9e;}.site-info a{color:#9e9e9e;}.site-info a:hover{color:#303030;}.footer-bar .widget_nav_menu .current-menu-item a{color:#303030;}input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select{color:#666666;background-color:#fafafa;border-color:#cccccc;}input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus{color:#666666;background-color:#ffffff;border-color:#bfbfbf;}button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background){color:#ffffff;background-color:#ef1a67;}button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover{color:#ffffff;background-color:#ef3b7d;}a.generate-back-to-top{background-color:rgba( 0,0,0,0.4 );color:#ffffff;}a.generate-back-to-top:hover,a.generate-back-to-top:focus{background-color:rgba( 0,0,0,0.6 );color:#ffffff;}@media (max-width: 610px){.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a{background:none;color:#ffffff;}}.inside-top-bar{padding:10px;}.nav-below-header .main-navigation .inside-navigation.grid-container, .nav-above-header .main-navigation .inside-navigation.grid-container{padding:0px 23px 0px 23px;}.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:60px;}.site-main .wp-block-group__inner-container{padding:60px;}.separate-containers .paging-navigation{padding-top:20px;padding-bottom:20px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-60px;width:calc(100% + 120px);max-width:calc(100% + 120px);}.one-container.right-sidebar .site-main,.one-container.both-right .site-main{margin-right:60px;}.one-container.left-sidebar .site-main,.one-container.both-left .site-main{margin-left:60px;}.one-container.both-sidebars .site-main{margin:0px 60px 0px 60px;}.one-container.archive .post:not(:last-child), .one-container.blog .post:not(:last-child){padding-bottom:60px;}.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .menu-bar-item > a{padding-left:17px;padding-right:17px;}.main-navigation .main-nav ul ul li a{padding:10px 17px 10px 17px;}.rtl .menu-item-has-children .dropdown-menu-toggle{padding-left:17px;}.menu-item-has-children .dropdown-menu-toggle{padding-right:17px;}.rtl .main-navigation .main-nav ul li.menu-item-has-children > a{padding-right:17px;}.footer-widgets-container{padding:60px;}.inside-site-info{padding:20px;}@media (max-width:768px){.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header{padding:30px;}.site-main .wp-block-group__inner-container{padding:30px;}.footer-widgets-container{padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;}.inside-site-info{padding-right:10px;padding-left:10px;}.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull{margin-left:-30px;width:calc(100% + 60px);max-width:calc(100% + 60px);}.one-container .site-main .paging-navigation{margin-bottom:20px;}}/* End cached CSS */.is-right-sidebar{width:30%;}.is-left-sidebar{width:25%;}.site-content .content-area{width:100%;}@media (max-width: 610px){.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder){display:block;}.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul,.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav){display:none;}.nav-align-right .inside-navigation,.nav-align-center .inside-navigation{justify-content:space-between;}}
+.elementor-template-full-width .site-content{display:block;}
+.navigation-branding .main-title{font-weight:bold;text-transform:none;font-size:25px;font-family:"Roboto", sans-serif;}@media (max-width: 610px){.navigation-branding .main-title{font-size:20px;}}
+.main-navigation.slideout-navigation .main-nav > ul > li > a{line-height:20px;}
+</style>
+<link rel='stylesheet' id='elementor-icons-css'  href='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css'  href='https://thebughunter.io/wp-content/plugins/elementor/assets/css/frontend.min.css' media='all' />
+<style id='elementor-frontend-inline-css'>
+@font-face{font-family:eicons;src:url(https://thebughunter.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5.10.0);src:url(https://thebughunter.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.eot?5.10.0#iefix) format("embedded-opentype"),url(https://thebughunter.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff2?5.10.0) format("woff2"),url(https://thebughunter.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.woff?5.10.0) format("woff"),url(https://thebughunter.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.ttf?5.10.0) format("truetype"),url(https://thebughunter.io/wp-content/plugins/elementor/assets/lib/eicons/fonts/eicons.svg?5.10.0#eicon) format("svg");font-weight:400;font-style:normal}
+</style>
+<link rel='stylesheet' id='elementor-post-174-css'  href='https://thebughunter.io/wp-content/uploads/elementor/css/post-174.css' media='all' />
+<link rel='stylesheet' id='elementor-pro-css'  href='https://thebughunter.io/wp-content/plugins/elementor-pro/assets/css/frontend.min.css' media='all' />
+<link rel='stylesheet' id='elementor-global-css'  href='https://thebughunter.io/wp-content/uploads/elementor/css/global.css' media='all' />
+<link rel='stylesheet' id='elementor-post-448-css'  href='https://thebughunter.io/wp-content/uploads/elementor/css/post-448.css' media='all' />
+<link rel='stylesheet' id='generate-offside-css'  href='https://thebughunter.io/wp-content/plugins/gp-premium/menu-plus/functions/css/offside.min.css' media='all' />
+<style id='generate-offside-inline-css'>
+.slideout-navigation.main-navigation .main-nav ul li a{font-weight:bold;text-transform:none;font-size:25px;}.slideout-navigation.main-navigation.do-overlay .main-nav ul ul li a{font-size:1em;font-size:24px;}.slideout-navigation, .slideout-navigation a{color:#ffffff;}.slideout-navigation button.slideout-exit{color:#ffffff;padding-left:17px;padding-right:17px;}.slide-opened nav.toggled .menu-toggle:before{display:none;}@media (max-width: 610px){.menu-bar-item.slideout-toggle{display:none;}}
+</style>
+<link rel='stylesheet' id='generate-navigation-branding-css'  href='https://thebughunter.io/wp-content/plugins/gp-premium/menu-plus/functions/css/navigation-branding-flex.min.css' media='all' />
+<style id='generate-navigation-branding-inline-css'>
+.main-navigation.has-branding .inside-navigation.grid-container, .main-navigation.has-branding.grid-container .inside-navigation:not(.grid-container){padding:0px 60px 0px 60px;}.main-navigation.has-branding:not(.grid-container) .inside-navigation:not(.grid-container) .navigation-branding{margin-left:10px;}.navigation-branding img, .site-logo.mobile-header-logo img{height:60px;width:auto;}.navigation-branding .main-title{line-height:60px;}@media (max-width: 610px){.main-navigation.has-branding.nav-align-center .menu-bar-items, .main-navigation.has-sticky-branding.navigation-stick.nav-align-center .menu-bar-items{margin-left:auto;}.navigation-branding{margin-right:auto;margin-left:10px;}.navigation-branding .main-title, .mobile-header-navigation .site-logo{margin-left:10px;}.main-navigation.has-branding .inside-navigation.grid-container{padding:0px;}}
+</style>
+<link rel='stylesheet' id='google-fonts-1-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRoboto+Slab%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto' media='all' />
+<link rel='stylesheet' id='elementor-icons-shared-0-css'  href='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-brands-css'  href='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-solid-css'  href='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css' media='all' />
+<link rel="https://api.w.org/" href="https://thebughunter.io/wp-json/" /><link rel="alternate" type="application/json" href="https://thebughunter.io/wp-json/wp/v2/pages/448" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://thebughunter.io/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://thebughunter.io/wp-includes/wlwmanifest.xml" /> 
+<link rel="canonical" href="https://thebughunter.io/" />
+<link rel='shortlink' href='https://thebughunter.io/' />
+<link rel="alternate" type="application/json+oembed" href="https://thebughunter.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthebughunter.io%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://thebughunter.io/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fthebughunter.io%2F&#038;format=xml" />
+<meta name="generator" content="Site Kit by Google 1.47.0" /><!-- Google Tag Manager -->
+<!-- End Google Tag Manager --><meta name="viewport" content="width=device-width, initial-scale=1"><!-- Global site tag (gtag.js) - Google Ads: 10809813404 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10809813404"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10809813404');
+</script>
+
+<!-- Hotjar Tracking Code for thebughunter.io -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2443264,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<link rel="icon" href="https://thebughunter.io/wp-content/uploads/2021/10/logo-live-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://thebughunter.io/wp-content/uploads/2021/10/logo-live.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://thebughunter.io/wp-content/uploads/2021/10/logo-live.png" />
+<meta name="msapplication-TileImage" content="https://thebughunter.io/wp-content/uploads/2021/10/logo-live.png" />
+		<style id="wp-custom-css">
+			/* GeneratePress Site CSS */ /* Link underlines */
+.entry-content a:not(.button) {
+	box-shadow: inset 0 -1px 0 currentColor;
+	transition: color 100ms ease-in,box-shadow .13s ease-in-out;
+}
+
+.entry-content a:not(.button):focus, .entry-content a:not(.button):hover {
+	box-shadow: inset 0 0 0 currentColor,0 3px 0 currentColor;
+}
+
+/* Content selection */
+::selection {
+  color: white; 
+  background: black;
+}
+
+/* Sub-menu effect */
+.main-navigation ul ul {
+	left: auto;
+	transition: opacity 300ms ease-in-out, transform 200ms ease-in-out, height 200ms ease-in-out;
+	transform: translateY(20px);
+	height: auto;
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 5px;
+	padding: 5px 0;
+}
+
+.main-navigation:not(.toggled) ul li:hover>ul, .main-navigation:not(.toggled) ul li.sfHover>ul {
+	transform: translateY(0);
+}
+
+.slideout-navigation.do-overlay .slideout-menu .sub-menu li a {
+	display: block;
+}
+
+/* Footer widget icons */
+.footer-widget-1 {
+	text-align: center;
+}
+
+.footer-icons a {
+	padding: 5px;
+	display: inline-block;
+}
+
+/* Center off canvas close button */
+@media (max-width: 768px) {
+	.slideout-navigation.do-overlay .slideout-exit {
+		text-align: center;
+	}
+} /* End GeneratePress Site CSS */		</style>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /></head>
+<body class="home page-template page-template-elementor_canvas page page-id-448 wp-custom-logo wp-embed-responsive post-image-below-header post-image-aligned-center slideout-enabled slideout-mobile sticky-menu-fade no-sidebar nav-below-header separate-containers header-aligned-left dropdown-hover elementor-default elementor-template-canvas elementor-kit-174 elementor-page elementor-page-448">
+	<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N952WF3"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->		<div data-elementor-type="wp-page" data-elementor-id="448" class="elementor elementor-448" data-elementor-settings="[]">
+							<div class="elementor-section-wrap">
+							<section class="elementor-section elementor-top-section elementor-element elementor-element-6868a40 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6868a40" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-a52562c" data-id="a52562c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-8848c81 elementor-widget elementor-widget-image" data-id="8848c81" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="425" height="178" src="https://thebughunter.io/wp-content/uploads/2021/09/cropped-cropped-logo-thebughunter.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/09/cropped-cropped-logo-thebughunter.png 425w, https://thebughunter.io/wp-content/uploads/2021/09/cropped-cropped-logo-thebughunter-300x126.png 300w" sizes="(max-width: 425px) 100vw, 425px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-e8d5b2b elementor-section-content-middle elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="e8d5b2b" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-4430ce0" data-id="4430ce0" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-f1e9e7e elementor-widget elementor-widget-heading" data-id="f1e9e7e" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Bem vindo ao<br><h1 style="color:#EF1A67;font-size:60px">THE BUG HUNTER</h1></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-d71f5f6 elementor-widget elementor-widget-text-editor" data-id="d71f5f6" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Aprenda a hackear empresas legalmente e caçar recompensas de U$50 a U$10.000 com Bug Bounty!</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-aa5d709 elementor-align-left elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="aa5d709" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="/curso" class="elementor-button-link elementor-button elementor-size-xl" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">COMECE AGORA</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5bfa09e" data-id="5bfa09e" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-129db90 elementor-hidden-tablet elementor-hidden-mobile elementor-widget elementor-widget-image" data-id="129db90" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="632" height="723" src="https://thebughunter.io/wp-content/uploads/2021/12/614f68a4a728e945fa3327cc_photo-home.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/614f68a4a728e945fa3327cc_photo-home.png 632w, https://thebughunter.io/wp-content/uploads/2021/12/614f68a4a728e945fa3327cc_photo-home-262x300.png 262w" sizes="(max-width: 632px) 100vw, 632px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-d21acad elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="d21acad" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4e98c63" data-id="4e98c63" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-d3c7076 elementor-widget elementor-widget-text-editor" data-id="d3c7076" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>O The Bug Hunter já foi destaque em:</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-0f8877d elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="0f8877d" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-a1e8a8c" data-id="a1e8a8c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-0c31f59 elementor-widget elementor-widget-image" data-id="0c31f59" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="300" height="80" src="https://thebughunter.io/wp-content/uploads/2021/12/619028676b5fd07b41fb640d_logo-ct-p-500-300x80.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/619028676b5fd07b41fb640d_logo-ct-p-500-300x80.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/619028676b5fd07b41fb640d_logo-ct-p-500.png 500w" sizes="(max-width: 300px) 100vw, 300px" />															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-5a84dfe" data-id="5a84dfe" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-fb7dfa1 elementor-widget elementor-widget-image" data-id="fb7dfa1" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="300" height="112" src="https://thebughunter.io/wp-content/uploads/2021/12/61902867022ee136160f87df_forbes-logo-black-and-white-p-500-300x112.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/61902867022ee136160f87df_forbes-logo-black-and-white-p-500-300x112.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/61902867022ee136160f87df_forbes-logo-black-and-white-p-500.png 500w" sizes="(max-width: 300px) 100vw, 300px" />															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-9abc98c" data-id="9abc98c" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-7877fb0 elementor-widget elementor-widget-image" data-id="7877fb0" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="300" height="51" src="https://thebughunter.io/wp-content/uploads/2021/12/6190286709868d6cc012642e_73c168d36a6ac59246a1d5bbcabd69f809f33a1c-300x51.png" class="attachment-medium size-medium" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/6190286709868d6cc012642e_73c168d36a6ac59246a1d5bbcabd69f809f33a1c-300x51.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/6190286709868d6cc012642e_73c168d36a6ac59246a1d5bbcabd69f809f33a1c-1024x173.png 1024w, https://thebughunter.io/wp-content/uploads/2021/12/6190286709868d6cc012642e_73c168d36a6ac59246a1d5bbcabd69f809f33a1c-768x130.png 768w, https://thebughunter.io/wp-content/uploads/2021/12/6190286709868d6cc012642e_73c168d36a6ac59246a1d5bbcabd69f809f33a1c.png 1331w" sizes="(max-width: 300px) 100vw, 300px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-614c324 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="614c324" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-453c98d" data-id="453c98d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-cbcacc7 elementor-widget elementor-widget-heading" data-id="cbcacc7" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Vamos te levar do zero ao <br>seu primeiro bounty em <a style="color:#EF1A67">4 levels</a></h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-5705778 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5705778" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-861f787" data-id="861f787" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-814e8a4 elementor-hidden-tablet elementor-hidden-phone elementor-widget elementor-widget-image" data-id="814e8a4" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="540" height="563" src="https://thebughunter.io/wp-content/uploads/2021/12/passo-1.png" class="attachment-medium_large size-medium_large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/passo-1.png 540w, https://thebughunter.io/wp-content/uploads/2021/12/passo-1-288x300.png 288w" sizes="(max-width: 540px) 100vw, 540px" />															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-259fdfe" data-id="259fdfe" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-0a3526b elementor-widget elementor-widget-heading" data-id="0a3526b" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">01</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-2d9eeb1 elementor-widget elementor-widget-heading" data-id="2d9eeb1" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Saia do Zero_</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-7d0437a elementor-widget elementor-widget-text-editor" data-id="7d0437a" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Bem-vindo ao tutorial do “jogo”🎮</p><p>Preparamos a Trilha Introdução ao Bug Bounty para te guiar no seu primeiro contato com o mundo de caça às falhas e hacking.</p><p>Você aprenderá os conceitos básicos e vai criar sua conta numa Plataforma de Bug Bounty &#8211; é nela que você receberá a sua 1ª recompensa nos próximos levels</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-6ea2314 elementor-hidden-desktop elementor-widget elementor-widget-image" data-id="6ea2314" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="540" height="563" src="https://thebughunter.io/wp-content/uploads/2021/12/passo-1.png" class="attachment-medium_large size-medium_large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/passo-1.png 540w, https://thebughunter.io/wp-content/uploads/2021/12/passo-1-288x300.png 288w" sizes="(max-width: 540px) 100vw, 540px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-7cb081c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7cb081c" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-364247b" data-id="364247b" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-f0f8157 elementor-widget elementor-widget-heading" data-id="f0f8157" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">02</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-a77f12c elementor-widget elementor-widget-heading" data-id="a77f12c" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="font-size: 30px;">Construa sua Base de Tecnologia_</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-63740c6 elementor-widget elementor-widget-text-editor" data-id="63740c6" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Terminal, WEB, Redes, GitHub, Javascript…</p><p>Estes são os superpoderes de um Hunter que você vai dominar na nossa Plataforma.</p><p>Com aulas animadas e práticas, as Trilhas<b> Sua Primeira Base</b> e <b>Arsenal do Hunter</b> te farão focar e aprender em tempo recorde &#8211; mesmo que você esteja começando do zero.</p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-117e13a" data-id="117e13a" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-f5611b0 elementor-widget elementor-widget-image" data-id="f5611b0" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="540" height="563" src="https://thebughunter.io/wp-content/uploads/2021/12/passo-2.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/passo-2.png 540w, https://thebughunter.io/wp-content/uploads/2021/12/passo-2-288x300.png 288w" sizes="(max-width: 540px) 100vw, 540px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-b892c6e elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b892c6e" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-25a3257" data-id="25a3257" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-93ac761 elementor-hidden-tablet elementor-hidden-phone elementor-widget elementor-widget-image" data-id="93ac761" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="553" height="563" src="https://thebughunter.io/wp-content/uploads/2021/12/passo-3.png" class="attachment-medium_large size-medium_large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/passo-3.png 553w, https://thebughunter.io/wp-content/uploads/2021/12/passo-3-295x300.png 295w" sizes="(max-width: 553px) 100vw, 553px" />															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-f09cf48" data-id="f09cf48" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-d234c76 elementor-widget elementor-widget-heading" data-id="d234c76" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">03</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-adfed11 elementor-widget elementor-widget-heading" data-id="adfed11" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="font-size: 30px;">Desbloqueie suas Hacker Skills_</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-0d31d8e elementor-widget elementor-widget-text-editor" data-id="0d31d8e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Além das aulas que te ensinam a caçar falhas como XSS, SQLi, CSRF, Header Injection…</p><p>&#8230;você entrará em ação nos Laboratórios Práticos que simulam alvos reais, te fazendo sentir a experiência do hacking na pele.</p><p>Após vencer as Trilhas Seu Começo nas Falhas e Vulnerabilidades, bounties como os do Facebook e Twitter poderão ser o seu playground (e fontes de recompensa $$$).</p><div> </div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-3c2bf05 elementor-hidden-desktop elementor-widget elementor-widget-image" data-id="3c2bf05" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="553" height="563" src="https://thebughunter.io/wp-content/uploads/2021/12/passo-3.png" class="attachment-medium_large size-medium_large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/passo-3.png 553w, https://thebughunter.io/wp-content/uploads/2021/12/passo-3-295x300.png 295w" sizes="(max-width: 553px) 100vw, 553px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-d27df51 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="d27df51" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-a3cf515" data-id="a3cf515" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-33171a8 elementor-widget elementor-widget-heading" data-id="33171a8" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">04</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-9819b81 elementor-widget elementor-widget-heading" data-id="9819b81" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="font-size: 30px;">Junte-se à Comunidade Hunter_</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-cdd570c elementor-widget elementor-widget-text-editor" data-id="cdd570c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Seja o Hunter que você mais deseja ser.</p><p>Nossa Comunidade no The Bug Hunter conta com +500 alunos ativos no Discord, dedicados em caçar falhas e evoluir com você!</p><p>Agora a escolha é sua: cace falhas sozinho ou forme um Time de Hunters para encontrar mais falhas, subir de ranking e dividir suas recompensas.</p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5708f20" data-id="5708f20" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-fa0c2ac elementor-widget elementor-widget-image" data-id="fa0c2ac" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="560" height="563" src="https://thebughunter.io/wp-content/uploads/2021/12/passo-4.png" class="attachment-medium_large size-medium_large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/passo-4.png 560w, https://thebughunter.io/wp-content/uploads/2021/12/passo-4-298x300.png 298w, https://thebughunter.io/wp-content/uploads/2021/12/passo-4-150x150.png 150w" sizes="(max-width: 560px) 100vw, 560px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-cd0424c elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="cd0424c" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5fa9e3b" data-id="5fa9e3b" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-9171066 elementor-widget elementor-widget-image" data-id="9171066" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="800" height="107" src="https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1024x137.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1024x137.png 1024w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-300x40.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-768x103.png 768w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1536x206.png 1536w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-2048x274.png 2048w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-e1661827827726.png 1000w" sizes="(max-width: 800px) 100vw, 800px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-71edff5 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="71edff5" data-element_type="section">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-7394f2d" data-id="7394f2d" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-fd1852d elementor-widget elementor-widget-text-editor" data-id="fd1852d" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>A verdade por trás das empresas que <b>pagam jovens até U$10.000</b> ‍para hackeá-las.</p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-c7bb418" data-id="c7bb418" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-6b2e05e elementor-widget elementor-widget-text-editor" data-id="6b2e05e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Se eu te contasse que você pode hackear empresas como Uber, Twitter e Instagram &#8211; LEGALMENTE, do seu próprio quarto&#8230;</p>
+<p>&#8230;e ainda ser pago em dólar por isso: você acreditaria?</p>
+<p>Neste exato MINUTO tem alguém recebendo uma recompensa (bem generosa) por caçar falhas no Bug Bounty.</p>
+<p>E isto é o que você precisa saber para ser o próximo:</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-b0a2482 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="b0a2482" data-element_type="section">
+							<div class="elementor-background-overlay"></div>
+							<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-56921de" data-id="56921de" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-8df6344 elementor-widget elementor-widget-image" data-id="8df6344" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="768" height="322" src="https://thebughunter.io/wp-content/uploads/2021/12/614bf46ee6034eedae7482e2_noticias-bb-768x322.png" class="attachment-medium_large size-medium_large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/614bf46ee6034eedae7482e2_noticias-bb-768x322.png 768w, https://thebughunter.io/wp-content/uploads/2021/12/614bf46ee6034eedae7482e2_noticias-bb-300x126.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/614bf46ee6034eedae7482e2_noticias-bb.png 904w" sizes="(max-width: 768px) 100vw, 768px" />															</div>
+				</div>
+				<div class="elementor-element elementor-element-553b9eb elementor-widget elementor-widget-text-editor" data-id="553b9eb" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Oi! Sou o Andres Alonso, CEO do The Bug Hunter…</p><p>&#8230;e caso você esteja perdido, vou te explicar:</p><p>Bug Bounty significa &#8211; literalmente &#8211; HACKEAR empresas legalmente e ser pago por cada falha que você encontrar.</p><p>É uma caça à recompensa dos hackers promovida por gigantes como Facebook, Amazon, Microsoft e Google!</p><p>Pra você ter uma ideia, já são MILHARES de jovens no mundo todo (inclusive alunos do The Bug Hunter) que aprenderam e estão aproveitando esta oportunidade…</p><p>&#8230;e hoje recebem de U$50 a U$200 caçando falhas mais comuns e FÁCEIS, a até +U$10.000 por falhas críticas!</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-01263a6 elementor-hidden-mobile elementor-widget elementor-widget-text-editor" data-id="01263a6" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div style="width:450px;height:auto;background-color:#ffeacd;padding:30px;border-radius:15px 15px 0px 15px;margin:20px;border: 2px solid #ffdfb7;">Parece bom de mais para ser verdade?</div>
+
+<div style="width:450px;height:auto;background-color:#d3eaff;padding:30px;border-radius:0px 15px 15px 15px;margin:20px;border: 2px solid rgba(150,204,255,.4);">
+Então imagina esse cenário comigo&#8230;</div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-df4e783 elementor-hidden-desktop elementor-hidden-tablet elementor-widget elementor-widget-text-editor" data-id="df4e783" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<div style="width: 90%; height: auto; background-color: #ffeacd; padding: 30px; border-radius: 15px 15px 0px 15px; margin: 20px; border: 2px solid #ffdfb7;">Parece bom de mais para ser verdade?</div>
+<div style="width: 90%; height: auto; background-color: #d3eaff; padding: 30px; border-radius: 0px 15px 15px 15px; margin: 20px; border: 2px solid rgba(150,204,255,.4);">Então imagina esse cenário comigo&#8230;</div>						</div>
+				</div>
+				<div class="elementor-element elementor-element-1d3e40c elementor-widget elementor-widget-text-editor" data-id="1d3e40c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p> </p><p>Você é o CEO de uma empresa, e todos os dias hackers tentam invadir o seu Aplicativo.</p><p>Até que de repente&#8230; um deles encontra uma <b>vulnerabilidade perigosa!</b></p><p><b> </b></p><p>O que você faz? </p><p><b>1)</b> É hackeado e perde clientes</p><p>Ou, a opção mais inteligente:</p><p><b>2)</b> Paga o hacker e recebe um relatório profissional, ensinando a corrigir aquela falha.</p><p> </p><p>A 2ª escolha é óbvia, e as empresas já sabem disso.</p><p>Tanto que aos 14 anos eu recebi <b>R$134.000</b> quando eu descobri uma falha no Instagram…</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-0edaca7 elementor-widget elementor-widget-image" data-id="0edaca7" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="708" height="588" src="https://thebughunter.io/wp-content/uploads/2021/12/614f6419b7876c1ce116b8e4_noticias-aa.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/614f6419b7876c1ce116b8e4_noticias-aa.png 708w, https://thebughunter.io/wp-content/uploads/2021/12/614f6419b7876c1ce116b8e4_noticias-aa-300x249.png 300w" sizes="(max-width: 708px) 100vw, 708px" />															</div>
+				</div>
+				<div class="elementor-element elementor-element-cf2d28c elementor-widget elementor-widget-text-editor" data-id="cf2d28c" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>E cada vez mais eu e outras pessoas estamos ganhando reportando falhas.</p><p>Porém eu acredito que a grande oportunidade do Bug Bounty ainda está chegando, é como se agora estivéssemos em apenas um &#8220;aquecimento&#8221;. Porque olha isso:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-3cd647d elementor-widget elementor-widget-image" data-id="3cd647d" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="768" height="472" src="https://thebughunter.io/wp-content/uploads/2021/12/graphiic-768x472.png" class="attachment-medium_large size-medium_large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/graphiic-768x472.png 768w, https://thebughunter.io/wp-content/uploads/2021/12/graphiic-300x184.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/graphiic-1024x629.png 1024w, https://thebughunter.io/wp-content/uploads/2021/12/graphiic-e1661827608365.png 700w" sizes="(max-width: 768px) 100vw, 768px" />															</div>
+				</div>
+				<div class="elementor-element elementor-element-5fb58ab elementor-widget elementor-widget-text-editor" data-id="5fb58ab" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>&#8230;e isso me motivou a criar o <b>The Bug Hunter</b>, uma Plataforma que está guiando centenas de jovens a terem esta mesma oportunidade:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-4106631 elementor-widget elementor-widget-text-editor" data-id="4106631" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><b>&#8211;</b> Aprender Hacking explorando sistemas de empresas reais</p>
+<p><b>&#8211;</b> Ganhar dinheiro hackeando legalmente</p>
+<p><b>&#8211;</b> Trabalhar de onde quiser, no seu tempo (e sem chefe!)</p>
+<p><b>&#8211; </b>Ter LIBERDADE &#8211; você nunca está preso a uma empresa.</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-faf9608 elementor-widget elementor-widget-text-editor" data-id="faf9608" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>E o melhor de tudo:</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-dce2beb elementor-widget elementor-widget-text-editor" data-id="dce2beb" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Este novo Mercado não se importa com quem você é.</p><p>Não importa a sua idade, gênero, se você tem um diploma ou não&#8230;</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-8b96a88 elementor-widget elementor-widget-text-editor" data-id="8b96a88" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p><b>O Bug Bounty não é uma entrevista de emprego.</b></p><p>Você só precisa dar o seu primeiro passo com o The Bug Hunter</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-332aad3 elementor-align-left elementor-widget elementor-widget-button" data-id="332aad3" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="/curso" class="elementor-button-link elementor-button elementor-size-xl" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">QUERO ENTRAR PRO THE BUG HUNTER</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-74bdff0 elementor-section-full_width elementor-section-height-default elementor-section-height-default" data-id="74bdff0" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9ff964f" data-id="9ff964f" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-7bca8af elementor-widget elementor-widget-image" data-id="7bca8af" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="800" height="107" src="https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1-e1638622076365-1024x137.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1-e1638622076365-1024x137.png 1024w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1-e1638622076365-300x40.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1-e1638622076365-768x103.png 768w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1-e1638622076365-1536x206.png 1536w, https://thebughunter.io/wp-content/uploads/2021/12/60927ad819f6a3826c73a67a_Page-Divider-1-e1638622076365-2048x274.png 2048w" sizes="(max-width: 800px) 100vw, 800px" />															</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-853acc6 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="853acc6" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-8fac5dc" data-id="8fac5dc" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-e95fabc elementor-widget elementor-widget-heading" data-id="e95fabc" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Libere o seu acesso aos nossos conteúdos de <a style="color:#EF1A67">hacking focado em Bug Bounty!</a></h2>		</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-fc21353 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="fc21353" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-564e917" data-id="564e917" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-7411dcc elementor-widget elementor-widget-image" data-id="7411dcc" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="800" height="485" src="https://thebughunter.io/wp-content/uploads/2021/12/6196fc81b8bc48281e00362b_conteudos.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/6196fc81b8bc48281e00362b_conteudos.png 987w, https://thebughunter.io/wp-content/uploads/2021/12/6196fc81b8bc48281e00362b_conteudos-300x182.png 300w, https://thebughunter.io/wp-content/uploads/2021/12/6196fc81b8bc48281e00362b_conteudos-768x465.png 768w" sizes="(max-width: 800px) 100vw, 800px" />															</div>
+				</div>
+				<div class="elementor-element elementor-element-b6f7c75 elementor-widget elementor-widget-heading" data-id="b6f7c75" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="font-size: 30px;">Torne-se um Hunter
+e acesse a Plataforma</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-5535be0 elementor-widget elementor-widget-text-editor" data-id="5535be0" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Aprenda com cursos completos, aulas práticas e apostilas que te levam do zero ao 1º Bounty em tempo recorde!</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-bbe5e96 elementor-align-center elementor-widget elementor-widget-button" data-id="bbe5e96" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="/curso" class="elementor-button-link elementor-button elementor-size-xl" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">COMECE AGORA</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-dfd8fd3" data-id="dfd8fd3" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-b6b4c76 elementor-widget elementor-widget-image" data-id="b6b4c76" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="540" height="390" src="https://thebughunter.io/wp-content/uploads/2021/12/aulas-praticas-2.png" class="attachment-large size-large" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/12/aulas-praticas-2.png 540w, https://thebughunter.io/wp-content/uploads/2021/12/aulas-praticas-2-300x217.png 300w" sizes="(max-width: 540px) 100vw, 540px" />															</div>
+				</div>
+				<div class="elementor-element elementor-element-6f775c0 elementor-widget elementor-widget-heading" data-id="6f775c0" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span style="font-size: 30px;">Conheça os nossos
+conteúdos gratuitos</span></h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-7cdadf0 elementor-widget elementor-widget-text-editor" data-id="7cdadf0" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Aprenda com posts e vídeos gratuitos revelando os bastidores de falhas, dicas de Bug Bounty e materiais de estudo extras!</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-a707b40 elementor-shape-rounded elementor-grid-0 e-grid-align-center elementor-widget elementor-widget-social-icons" data-id="a707b40" data-element_type="widget" data-widget_type="social-icons.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-social-icons-wrapper elementor-grid">
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-youtube elementor-repeater-item-57f577d" href="https://www.youtube.com/TheBugHunterIo" target="_blank">
+						<span class="elementor-screen-only">Youtube</span>
+						<i class="fab fa-youtube"></i>					</a>
+				</span>
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-repeater-item-7a16f70" href="https://www.instagram.com/thebughunter.io/" target="_blank">
+						<span class="elementor-screen-only">Instagram</span>
+						<i class="fab fa-instagram"></i>					</a>
+				</span>
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-link elementor-repeater-item-9e35d84" href="http://3.95.159.61/blog/" target="_blank">
+						<span class="elementor-screen-only">Link</span>
+						<i class="fas fa-link"></i>					</a>
+				</span>
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-e55d89b elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="e55d89b" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5cca273" data-id="5cca273" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-4aad404 elementor-widget elementor-widget-image" data-id="4aad404" data-element_type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img width="215" height="192" src="https://thebughunter.io/wp-content/uploads/2021/12/614f41eaae0e341f9a3ddb93_simbolo-red.png" class="attachment-large size-large" alt="" loading="lazy" />															</div>
+				</div>
+				<div class="elementor-element elementor-element-496fba3 elementor-widget elementor-widget-heading" data-id="496fba3" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default">Tá esperando o quê?</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-7bf935e elementor-widget elementor-widget-text-editor" data-id="7bf935e" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Você está a só um passo de começar a jornada no Hacking e Bug Bounty, rumo à sua primeira recompensa!</p><p>Faça parte da maior Comunidade de Hunters do Brasil 👾</p>						</div>
+				</div>
+				<div class="elementor-element elementor-element-c101cca elementor-align-center elementor-widget elementor-widget-button" data-id="c101cca" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+			<a href="/curso" class="elementor-button-link elementor-button elementor-size-xl" role="button">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">QUERO SER ALUNO</span>
+		</span>
+					</a>
+		</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-5a374db0 elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5a374db0" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;gradient&quot;,&quot;stretch_section&quot;:&quot;section-stretched&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-1e43a653" data-id="1e43a653" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-43768b19 elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="43768b19" data-element_type="widget" data-widget_type="theme-site-logo.default">
+				<div class="elementor-widget-container">
+																<a href="https://thebughunter.io">
+							<img width="425" height="178" src="https://thebughunter.io/wp-content/uploads/2021/09/cropped-cropped-logo-thebughunter.png" class="attachment-full size-full" alt="" loading="lazy" srcset="https://thebughunter.io/wp-content/uploads/2021/09/cropped-cropped-logo-thebughunter.png 425w, https://thebughunter.io/wp-content/uploads/2021/09/cropped-cropped-logo-thebughunter-300x126.png 300w" sizes="(max-width: 425px) 100vw, 425px" />								</a>
+															</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-7870316" data-id="7870316" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-5802e9dd elementor-widget elementor-widget-text-editor" data-id="5802e9dd" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>Siga nas redes sociais</p>						</div>
+				</div>
+					</div>
+		</div>
+				<div class="elementor-column elementor-col-33 elementor-top-column elementor-element elementor-element-45c6e86" data-id="45c6e86" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-616aba1e elementor-shape-rounded elementor-grid-0 elementor-widget elementor-widget-social-icons" data-id="616aba1e" data-element_type="widget" data-widget_type="social-icons.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-social-icons-wrapper elementor-grid">
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-repeater-item-1de86b8" href="https://www.instagram.com/thebughunter.io/" target="_blank">
+						<span class="elementor-screen-only">Instagram</span>
+						<i class="fab fa-instagram"></i>					</a>
+				</span>
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-youtube elementor-repeater-item-84be6d7" href="https://www.youtube.com/channel/UCZcXehoazteUS0raxGViMGQ" target="_blank">
+						<span class="elementor-screen-only">Youtube</span>
+						<i class="fab fa-youtube"></i>					</a>
+				</span>
+							<span class="elementor-grid-item">
+					<a class="elementor-icon elementor-social-icon elementor-social-icon-linkedin elementor-repeater-item-4bd9983" href="https://www.linkedin.com/company/thebughunter/https://www.linkedin.com/company/thebughunter/" target="_blank">
+						<span class="elementor-screen-only">Linkedin</span>
+						<i class="fab fa-linkedin"></i>					</a>
+				</span>
+					</div>
+				</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-3e55bcd5 elementor-section-stretched elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="3e55bcd5" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;,&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+					<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-35b61403" data-id="35b61403" data-element_type="column">
+			<div class="elementor-widget-wrap elementor-element-populated">
+								<div class="elementor-element elementor-element-498d8eb5 elementor-widget-divider--view-line elementor-widget elementor-widget-divider" data-id="498d8eb5" data-element_type="widget" data-widget_type="divider.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-divider">
+			<span class="elementor-divider-separator">
+						</span>
+		</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-5ba6544b elementor-widget elementor-widget-text-editor" data-id="5ba6544b" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+							<p>THE BUG HUNTER LTDA &#8211; CNPJ 42165627000142</p>						</div>
+				</div>
+					</div>
+		</div>
+							</div>
+		</section>
+						</div>
+					</div>
+				<nav id="generate-slideout-menu" class="main-navigation slideout-navigation do-overlay" itemtype="https://schema.org/SiteNavigationElement" itemscope style="display: none;">
+			<div class="inside-navigation grid-container grid-parent">
+				<button class="slideout-exit has-svg-icon"><span class="gp-icon pro-close">
+				<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
+					<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" />
+				</svg>
+			</span> <span class="screen-reader-text">Fechar</span></button><div class="main-nav"><ul id="menu-primary-arctic" class=" slideout-menu"><li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="http://3.95.159.61">Home</a></li>
+<li id="menu-item-131" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-131"><a href="https://thebughunter.io/blog/category/uncategorized/">Uncategorized</a></li>
+</ul></div><aside id="custom_html-3" class="widget_text slideout-widget widget_custom_html"><h2 class="widget-title">Connect</h2><div class="textwidget custom-html-widget"><div class="footer-icons">
+	<a href="https://facebook.com"><svg width="30" height="30" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg></a>
+
+<a href="https://twitter.com"><svg width="30" height="30" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1684 408q-67 98-162 167 1 14 1 42 0 130-38 259.5t-115.5 248.5-184.5 210.5-258 146-323 54.5q-271 0-496-145 35 4 78 4 225 0 401-138-105-2-188-64.5t-114-159.5q33 5 61 5 43 0 85-11-112-23-185.5-111.5t-73.5-205.5v-4q68 38 146 41-66-44-105-115t-39-154q0-88 44-163 121 149 294.5 238.5t371.5 99.5q-8-38-8-74 0-134 94.5-228.5t228.5-94.5q140 0 236 102 109-21 205-78-37 115-142 178 93-10 186-50z"/></svg></a>
+
+<a href="https://linkedin.com"><svg width="30" height="30" viewbox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg></a>
+</div></div></aside>			</div><!-- .inside-navigation -->
+		</nav><!-- #site-navigation -->
+
+		<link rel='stylesheet' id='whp8967tw-bs4.css-css'  href='https://thebughunter.io/wp-content/plugins/wp-security-hardening/modules/inc/assets/css/tw-bs4.css' media='all' />
+<link rel='stylesheet' id='whp9823font-awesome.min.css-css'  href='https://thebughunter.io/wp-content/plugins/wp-security-hardening/modules/inc/fa/css/font-awesome.min.css' media='all' />
+<link rel='stylesheet' id='whp5344front.css-css'  href='https://thebughunter.io/wp-content/plugins/wp-security-hardening/modules/css/front.css' media='all' />
+<link rel='stylesheet' id='e-animations-css'  href='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/animations/animations.min.css' media='all' />
+<script id='generate-offside-js-extra'>
+var offSide = {"side":"left"};
+</script>
+<script src='https://thebughunter.io/wp-content/plugins/gp-premium/menu-plus/functions/js/offside.min.js' id='generate-offside-js'></script>
+<script id='site_tracking-js-extra'>
+var php_data = {"ac_settings":{"tracking_actid":651038485,"site_tracking_default":1,"site_tracking":1},"user_email":""};
+</script>
+<script src='https://thebughunter.io/wp-content/plugins/activecampaign-subscription-forms/site_tracking.js' id='site_tracking-js'></script>
+<script id='ihs_geo_main_js-js-extra'>
+var geodata = {"ajax_url":"https:\/\/thebughunter.io\/wp-admin\/admin-ajax.php","ajax_nonce":"c9640b1c91"};
+</script>
+<script src='https://thebughunter.io/wp-content/plugins/ihs-geo-location/vendor/js/main.js' id='ihs_geo_main_js-js'></script>
+<script id='social_warfare_script-js-extra'>
+var socialWarfare = {"addons":[],"post_id":"448","variables":{"emphasizeIcons":false,"powered_by_toggle":false,"affiliate_link":"https:\/\/warfareplugins.com"},"floatBeforeContent":"1"};
+</script>
+<script src='https://thebughunter.io/wp-content/plugins/social-warfare/assets/js/script.min.js' id='social_warfare_script-js'></script>
+<!--[if lte IE 11]>
+<script src='https://thebughunter.io/wp-content/themes/generatepress/assets/js/classList.min.js' id='generate-classlist-js'></script>
+<![endif]-->
+<script id='generate-main-js-extra'>
+var generatepressMenu = {"toggleOpenedSubMenus":"1","openSubMenuLabel":"Open Sub-Menu","closeSubMenuLabel":"Close Sub-Menu"};
+</script>
+<script src='https://thebughunter.io/wp-content/themes/generatepress/assets/js/main.min.js' id='generate-main-js'></script>
+<script src='https://thebughunter.io/wp-includes/js/wp-embed.min.js' id='wp-embed-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js' id='elementor-pro-webpack-runtime-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js' id='elementor-webpack-runtime-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/js/frontend-modules.min.js' id='elementor-frontend-modules-js'></script>
+<script id='elementor-pro-frontend-js-before'>
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/thebughunter.io\/wp-admin\/admin-ajax.php","nonce":"c4a877c8d0","urls":{"assets":"https:\/\/thebughunter.io\/wp-content\/plugins\/elementor-pro\/assets\/"},"i18n":{"toc_no_headings_found":"No headings were found on this page."},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"google":{"title":"Google+","has_counter":true},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"}},"facebook_sdk":{"lang":"pt_BR","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/thebughunter.io\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+</script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor-pro/assets/js/frontend.min.js' id='elementor-pro-frontend-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js' id='elementor-waypoints-js'></script>
+<script src='https://thebughunter.io/wp-includes/js/jquery/ui/core.min.js' id='jquery-ui-core-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/swiper/swiper.min.js' id='swiper-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/share-link/share-link.min.js' id='share-link-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js' id='elementor-dialog-js'></script>
+<script id='elementor-frontend-js-before'>
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnTwitter":"Compartilhar no Twitter","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Celular","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Celular extra","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet extra","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}},"version":"3.4.8","is_static":false,"experimentalFeatures":{"e_dom_optimization":true,"a11y_improvements":true,"e_import_export":true,"additional_custom_breakpoints":true,"landing-pages":true,"elements-color-picker":true,"admin-top-bar":true,"form-submissions":true,"video-playlist":true},"urls":{"assets":"https:\/\/thebughunter.io\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":448,"title":"The%20Bug%20Hunter%20%E2%80%93%20Aprenda%20Bug%20Bounty","excerpt":"","featuredImage":false}};
+</script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/js/frontend.min.js' id='elementor-frontend-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor-pro/assets/js/preloaded-elements-handlers.min.js' id='pro-preloaded-elements-handlers-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor/assets/js/preloaded-modules.min.js' id='preloaded-modules-js'></script>
+<script src='https://thebughunter.io/wp-content/plugins/elementor-pro/assets/lib/sticky/jquery.sticky.min.js' id='e-sticky-js'></script>
+<script type="text/javascript"> var swp_nonce = "b3b89400a7";function parentIsEvil() { var html = null; try { var doc = top.location.pathname; } catch(err){ }; if(typeof doc === "undefined") { return true } else { return false }; }; if (parentIsEvil()) { top.location = self.location.href; };var url = "https://thebughunter.io/";if(url.indexOf("stfi.re") != -1) { var canonical = ""; var links = document.getElementsByTagName("link"); for (var i = 0; i < links.length; i ++) { if (links[i].getAttribute("rel") === "canonical") { canonical = links[i].getAttribute("href")}}; canonical = canonical.replace("?sfr=1", "");top.location = canonical; console.log(canonical);};var swpFloatBeforeContent = true; var swp_ajax_url = "https://thebughunter.io/wp-admin/admin-ajax.php"; var swp_post_id = "448";var swpClickTracking = false;</script>	</body>
+</html>
