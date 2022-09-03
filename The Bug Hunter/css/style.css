@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+body{
+    background-color: black;
+}
+
+div#content-logo-principal{
+    width:1404px;
+    height: 85.91px;
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+
+img#logo-principal{
+    width: 8%;
+    height: auto;
+    display: block;
+    margin-left: 641px;
+}
+
+div#corpo{
+    width: 634px;
+    height: 738px;
+    box-sizing: border-box;
+}
+
+section#boas-vindas{
+    display: block;
+    width: 674px;
+    height: 738px;
+    float: left;
+    padding-left: 100px;
+    font-family: "Droid Serif", serif;
+    font-size: 18px;
+}
+
+section#boas-vindas h1{
+    font-family: Roboto, sans-serif;
+    font-size: 60px;
+    color: #EF1A67;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+section#boas-vindas h2{
+    font-family: Roboto, sans-serif;
+    font-size: 36px;
+    color: #FFFFFF;
+    margin: 0px;
+}
+
+section#boas-vindas div#espaco{
+    width: 654px;
+    height: 35px; 
+    margin-bottom: 20px;
+}
+
+section#boas-vindas div#texto-paragrafo{
+    width: 654px;
+    height: 68px;
+    margin-bottom: 20px;
+}
+
+section#boas-vindas p{
+    width: 654px;
+    height: 68px;
+    color: #FFFFFF;
+}
