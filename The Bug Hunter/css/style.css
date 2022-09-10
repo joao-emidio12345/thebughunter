@@ -50,6 +50,8 @@ section#boas-vindas{
     padding-left: 100px;
     font-family: Droid, serif;
     font-size: 20px;
+    left: 70px;
+    right: -70px;
 }
 
 section#boas-vindas h1{
@@ -116,11 +118,13 @@ div#content-imagem-boas-vindas{
     height: 738px;
     box-sizing: border-box;
     vertical-align: middle;
+    display: block;
+    float: right;
 }
 
 div#content-imagem-boas-vindas img{
-    width: 520px;
-    height: 629px;
+    width: 608px;
+    height: 688px;
 }
 
 section#first{
@@ -146,6 +150,8 @@ section#second{
     justify-content: center;
     align-items: center;
     margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div.center{
@@ -182,6 +188,8 @@ section#third{
     align-items: center;
     margin-top: 20px;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section#third h2{
@@ -259,6 +267,8 @@ p.p-padrao{
 section#fourth{
     height: 479px;
     width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div.imagem-direita{
@@ -284,16 +294,22 @@ div.texto-esquerda{
 section#fifth{
     height: 479px;
     width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section#sixth{
     height: 479px;
     width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section#seventh{
     height: 479px;
     width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div.imagem-esquerda-diff{
@@ -347,6 +363,8 @@ section.divisoria{
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 section.divisoria img{
     width: 1250px;
