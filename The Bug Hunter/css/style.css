@@ -376,3 +376,8 @@ section.divisoria img{
     align-items: center;
     text-align: center;
 }
+
+div.gsc-control-cse{
+    background-color: #1f1d2b;
+    border: #1f1d2b;
+}
