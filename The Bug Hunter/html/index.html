@@ -8,39 +8,6 @@
     <title>The Bug Hunter - Aprenda Bug Bounty</title>
 </head>
 <body>
-    <script async src="https://cse.google.com/cse.js?cx=13bb2491488e442a7">
-    </script>
-    <script>
-        const update = {
-            "email": "eve.holt@reqres.in",
-            "password": "cityslicka"
-        };
-
-        const login = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(update)
-        };
-
-        fetch('https://reqres.in/api/login', login)
-            .then(data => {
-                if(data.ok){
-                    throw Error(data.status);
-                }
-                return data.json();
-            }).then(login => {
-                console.log(login);
-                {
-                email: "eve.holt@reqres.in"
-                password: "cityslicka"
-                };
-            }).catch(e => {
-                console.log(e);
-            })
-    </script>
-    <div class="gcse-search"></div>
     <div id="content-logo-principal">
         <img id="logo-principal" src="https://thebughunter.io/wp-content/uploads/2021/09/cropped-cropped-logo-thebughunter.png"
         class="attachment-large size-large" alt="" loading="lazy"
